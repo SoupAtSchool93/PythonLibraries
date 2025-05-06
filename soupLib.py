@@ -15,10 +15,9 @@ class terminal(): #stuff for .py files running in a terminal, this stuff mainly 
     def clearScreen(): #clears the terminal by running the Windows CLS command
         if OS_name == "Windows":
             os.system("cls")
-        elif OS_name == "Linux" or system_name == "Darwin":
-            os.system("clear")
         else:
-            raise Exception("Unknown OS. clearScreen function cannot continue")
+            os.system("clear")
+
     def userInput(question: str):
         #raise TypeError if input not string
         if not isinstance(question, str):
@@ -101,4 +100,17 @@ class terminal(): #stuff for .py files running in a terminal, this stuff mainly 
             fB = "F"
         
         os.system(f"color {fB}{fA}")
+class files():
+    def findFilesInDir(path):
+        returnList = []
+        for file in os.listdir(path):
+            if os.path.isfile(os.path.join(path, file)):
+                returnList.append(file)
+        return returnList
     
+    def findDirsInDir(path):
+        returnList = []
+        for file in os.listdir(path):
+            if not os.path.isfile(os.path.join(path, file)):
+                returnList.append(file)
+        return returnList
